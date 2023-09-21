@@ -1,4 +1,4 @@
-import { Viaggio } from './formatClass.js'
+const Viaggio = require('./formatClass.js');
 
 function parseViaggi(jsonData)
 {
@@ -6,8 +6,8 @@ function parseViaggi(jsonData)
 
     if (!jsonData || !jsonData.data || !jsonData.data.outbound || !jsonData.data.outbound.routes)
     {
-        console.error('jsonData - formato JSON non valido')
-        return { success: false, error: 'Formato JSON non valido'}
+        console.error('jsonData - Json Not Valid')
+        return { success: false, error: 'Json Not Valid'}
     }
 
     const routes = jsonData.data.outbound.routes
@@ -25,7 +25,7 @@ function parseViaggi(jsonData)
 
             if (!direction || !travel_duration || !service_name || !origin || !destination || !departure_timestamp || !arrival_timestamp || !rates)
             {
-                console.warn('Mancano dati essenziali')
+                console.warn('Warning -  some data not found')
                 continue;
             }
 
@@ -34,19 +34,17 @@ function parseViaggi(jsonData)
 
         } catch (err)
         {
-            console.error('Errore nel parsing del viaggio:', err.message);
-            return { success: false, error: 'Errore durante il parsing di uno dei viaggi.' };
+            console.error('Error parsing element', err.message);
+            return { success: false, error: 'Error parsing element' };
         }
     }
 
     if (viaggiList.length === 0)
     {
-        return { success: false, error: 'Nessun viaggio valido trovato.' }
+        return { success: false, error: 'No valid trips found.' }
     }
 
     return { success: true, data: viaggiList }
 }
 
-
-
-export { parseViaggi }
+module.exports = { parseViaggi }

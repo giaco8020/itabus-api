@@ -1,4 +1,3 @@
-/Classe che permette di immagazzinare un viaggio e richiamare medoti utili per visualizzazione
 
 class Stazione {
     constructor(code, city, address, destinations) {
@@ -69,7 +68,6 @@ class Viaggio {
         return this.rates;
     }
 
-    // Funzioni aggiuntive per dettagli sui prezzi e tariffe
     getBasicPrice() {
         return this.rates.BASIC?.price;
     }
@@ -88,3 +86,4 @@ class Viaggio {
 }
 
 
+module.exports = { Stazione, Viaggio }

@@ -1,4 +1,30 @@
 /Classe che permette di immagazzinare un viaggio e richiamare medoti utili per visualizzazione
+
+class Stazione {
+    constructor(code, city, address, destinations) {
+        this.code = code;
+        this.city = city;
+        this.address = address;
+        this.destinations = destinations;
+    }
+
+    getCode() {
+        return this.code;
+    }
+
+    getCity() {
+        return this.city;
+    }
+
+    getAddress() {
+        return this.address;
+    }
+
+    getDestinations() {
+        return this.destinations;
+    }
+}
+
 class Viaggio {
     constructor(direction, travel_duration, service_name, origin, destination, departure_timestamp, arrival_timestamp, rates) {
         this.direction = direction;
@@ -60,3 +86,5 @@ class Viaggio {
         return this.rates.FLEX_EXTRA?.price;
     }
 }
+
+

@@ -2,7 +2,6 @@ import { Viaggio } from './formatClass.js'
 
 function parseViaggi(jsonData)
 {
-
     const viaggiList = []
 
     if (!jsonData || !jsonData.data || !jsonData.data.outbound || !jsonData.data.outbound.routes)
@@ -47,5 +46,7 @@ function parseViaggi(jsonData)
 
     return { success: true, data: viaggiList }
 }
+
+
 
 export { parseViaggi }

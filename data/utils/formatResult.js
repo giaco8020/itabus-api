@@ -1,4 +1,5 @@
-const { Viaggio } = require('./formatClass.js');
+const { Viaggio, Results } = require('./formatClass.js');
+
 
 function parseViaggi(jsonData)
 {
@@ -44,7 +45,7 @@ function parseViaggi(jsonData)
         return { success: false, error: 'No valid trips found.' }
     }
 
-    return { success: true, data: viaggiList }
+    return { success: true, data: new Results(viaggiList) }
 }
 
 //Check date format -- 'AAAA-MM-GG'
@@ -53,12 +54,5 @@ function checkDateFormat(dateString) {
     return regex.test(dateString);
 }
 
-function estraiOrario(dataString) {
-    const data = new Date(dataString);
-    const ore = data.getUTCHours().toString().padStart(2, '0');
-    const minuti = data.getUTCMinutes().toString().padStart(2, '0');
-    return `${ore}:${minuti}`;
-}
 
-
-module.exports = { parseViaggi, checkDateFormat, estraiOrario }
+module.exports = { parseViaggi, checkDateFormat }

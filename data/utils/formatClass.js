@@ -1,5 +1,3 @@
-const { estraiOrario } = require('./formatResult.js');
-
 class Stazione {
     constructor(code, city, address, destinations) {
         this.code = code;
@@ -8,18 +6,31 @@ class Stazione {
         this.destinations = destinations;
     }
 
+    /**
+     * @returns Id of Station
+     */
+
     getCode() {
         return this.code;
     }
 
+    /**
+     * @returns City of Station
+     */
     getCity() {
         return this.city;
     }
 
+    /**
+     * @returns Address of Station
+     */
     getAddress() {
         return this.address;
     }
 
+    /**
+     * @returns List of available destinations from this station
+     */
     getDestinations() {
         return this.destinations;
     }
@@ -37,22 +48,37 @@ class Viaggio {
         this.rates = rates;
     }
 
+    /**
+     * @returns get travel direction
+     */
     getDirection() {
         return this.direction;
     }
 
+    /**
+     * @returns HH:MM travel duration
+     */
     getTravelDuration() {
         return this.travel_duration;
     }
 
+    /**
+     * @returns get itabus' id associated by travel
+     */
     getId() {
         return this.id;
     }
 
+    /**
+     * @returns get travel departure
+     */
     getOrigin() {
         return this.origin;
     }
 
+    /**
+     * @returns get travel destination
+     */
     getDestination() {
         return this.destination;
     }
@@ -65,16 +91,25 @@ class Viaggio {
         return this.arrival_timestamp;
     }
 
+    /**
+     * @returns get departure time (HH:MM)
+     */
     getDepartureTime()
     {
         return estraiOrario(this.getDepartureTimestamp())
     }
 
+    /**
+     * @returns get arrival time (HH:MM)
+     */
     getArrivalTime()
     {
         return estraiOrario(this.getArrivalTimestamp())
     }
 
+    /**
+     * @returns get travel's rates
+     */
     getRates() {
         return this.rates;
     }
@@ -101,11 +136,17 @@ class Results {
         this.tickets = tickets
     }
 
+    /**
+     * @returns get all tickets found
+     */
     getTickets()
     {
         return this.tickets
     }
 
+    /**
+     * @returns get cheapest trip
+     */
     getCheapestTrip() {
         return this.tickets.sort((a, b) => {
             // Assuming BASIC price is the standard fare
@@ -113,11 +154,15 @@ class Results {
         })[0];
     }
 
+    /**
+     * @returns get shortest trip
+     */
     getShortestTrip() {
         return this.tickets.sort((a, b) => {
             return a.getTravelDuration() - b.getTravelDuration();
         })[0];
     }
+
 
     getTripsWithFlexRate() {
         return this.tickets.filter(viaggio => {
@@ -125,15 +170,6 @@ class Results {
         });
     }
 
-    getTripsFromTime(startTimeString) {
-        const fullDateString = `${this.getTickets()[0].getDate()}T${startTimeString}:00`;
-        const startTime = new Date(fullDateString);
-
-        return this.tickets.filter(viaggio => {
-            return viaggio.getDepartureTimestamp() >= startTime;
-        });
-    }
-
 }
 
-module.exports = { Stazione, Viaggio }
+module.exports = { Stazione, Viaggio, Results }

@@ -16,7 +16,14 @@ data.data.forEach(station => {
 /* Function to return Stations Element */
 function find_station(stationT)
 {
-    return stationsMap[stationT.toLowerCase()];
+    const res = stationsMap[stationT.toLowerCase()]
+
+    if(res === undefined)
+    {
+        return { success: false, error: 'Invalid station' }
+    }
+
+    return { success: true, data: res }
 }
 
 //FORMATO DATA CORRETTO --> "2023-04-19"
@@ -24,7 +31,7 @@ async function search_ticket(departure, destination, date)
 {
     if(checkDateFormat(date) === false)
     {
-        return { success: false, error: 'Invalid date format' };
+        return { success: false, error: 'Invalid date format' }
     }
 
     const code_departure = find_station(departure)
@@ -35,8 +42,8 @@ async function search_ticket(departure, destination, date)
         return { success: false, error: 'Invalid departure e/o destination' };
     }
 
-    console.log(code_departure.getCity())
-    console.log(code_destination.getCity())
+    //console.log(code_departure.getCity())
+    //console.log(code_destination.getCity())
 
     //Endpoint --> https://www.itabus.it/on/demandware.store/Sites-ITABUS-Site/it/Api-Travels?
     const params = `origin=${code_departure.getCode()}&destination=${code_destination.getCode()}&datestart=${date}&adults=1&children=0&membership=false&code=`;
@@ -59,14 +66,8 @@ async function search_ticket(departure, destination, date)
 
         });
 
-    //console.log(response.data)
-    const result = parseViaggi(response.data);
-    console.log(result)
-
-    return result
+    return parseViaggi(response.data)
 }
 
-search_ticket("Bologna", "Milano", "2023-10-19")
-    .then(pippo => {
-        console.log(pippo);
-    });
+
+module.exports = { search_ticket, find_station }

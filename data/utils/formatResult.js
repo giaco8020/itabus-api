@@ -1,4 +1,4 @@
-const Viaggio = require('./formatClass.js');
+const { Viaggio } = require('./formatClass.js');
 
 function parseViaggi(jsonData)
 {
@@ -47,4 +47,10 @@ function parseViaggi(jsonData)
     return { success: true, data: viaggiList }
 }
 
-module.exports = { parseViaggi }
+//Check date format -- 'AAAA-MM-GG'
+function checkDateFormat(dateString) {
+    const regex = /^\d{4}-\d{2}-\d{2}$/
+    return regex.test(dateString);
+}
+
+module.exports = { parseViaggi, checkDateFormat }

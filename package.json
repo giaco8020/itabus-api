@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "access to ItabusAPI's unofficial API",
   "main": "index.js",
-  "scripts": {
-    "test": exit 0"
-  },
   "keywords": [],
   "author": "giaco8020",
   "license": "MIT",

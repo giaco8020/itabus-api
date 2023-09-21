@@ -4,7 +4,10 @@
 ![npm](https://img.shields.io/npm/dt/itabus-api.svg "Total Downloads")
 
 Access to Itabus's unofficial API with object-oriented promises.
-The project is developed for information purposes. *Do not* use this code for evil purposes and respect the service offered.
+
+The project is developed for information purposes. 
+
+**Do not use this code for evil purposes and respect the service offered. **
 
 ## Installation 
 ```

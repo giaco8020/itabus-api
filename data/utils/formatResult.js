@@ -53,4 +53,12 @@ function checkDateFormat(dateString) {
     return regex.test(dateString);
 }
 
-module.exports = { parseViaggi, checkDateFormat }
+function estraiOrario(dataString) {
+    const data = new Date(dataString);
+    const ore = data.getUTCHours().toString().padStart(2, '0');
+    const minuti = data.getUTCMinutes().toString().padStart(2, '0');
+    return `${ore}:${minuti}`;
+}
+
+
+module.exports = { parseViaggi, checkDateFormat, estraiOrario }

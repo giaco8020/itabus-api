@@ -1,10 +1,10 @@
 const axios = require('axios');
 
-const { parseViaggi, checkDateFormat } = require('./utils/formatResult.js');
-const { Stazione} = require('./utils/formatClass.js');
+const { parseViaggi, checkDateFormat } = require('../utils/formatResult.js');
+const { Stazione } = require('../utils/formatClass.js');
 
 /* Load Json File*/
-const data = require('./stations.json');
+const data = require('../utils/stations.json');
 
 /* Init StationsMap from JsonFile */
 const stationsMap = {}
@@ -47,7 +47,6 @@ async function search_ticket(departure, destination, date)
         .catch(function (error) {
             if (error.response) {
                 return { success: false, error: `ERROR -- statusCode response [${response.status}] ` };
-
             }
             else if (error.request)
             {
@@ -64,7 +63,7 @@ async function search_ticket(departure, destination, date)
     const result = parseViaggi(response.data);
     console.log(result)
 
-    return undefined
+    return result
 }
 
 search_ticket("Bologna", "Milano", "2023-10-19")

@@ -1,3 +1,4 @@
+const { estraiOrario } = require('./formatResult.js');
 
 class Stazione {
     constructor(code, city, address, destinations) {
@@ -64,6 +65,16 @@ class Viaggio {
         return this.arrival_timestamp;
     }
 
+    getDepartureTime()
+    {
+        return estraiOrario(this.getDepartureTimestamp())
+    }
+
+    getArrivalTime()
+    {
+        return estraiOrario(this.getArrivalTimestamp())
+    }
+
     getRates() {
         return this.rates;
     }
@@ -85,6 +96,44 @@ class Viaggio {
     }
 }
 
+class Results {
+    constructor(tickets) {
+        this.tickets = tickets
+    }
 
+    getTickets()
+    {
+        return this.tickets
+    }
+
+    getCheapestTrip() {
+        return this.tickets.sort((a, b) => {
+            // Assuming BASIC price is the standard fare
+            return a.getBasicPrice() - b.getBasicPrice();
+        })[0];
+    }
+
+    getShortestTrip() {
+        return this.tickets.sort((a, b) => {
+            return a.getTravelDuration() - b.getTravelDuration();
+        })[0];
+    }
+
+    getTripsWithFlexRate() {
+        return this.tickets.filter(viaggio => {
+            return viaggio.getFlexPrice() !== undefined;
+        });
+    }
+
+    getTripsFromTime(startTimeString) {
+        const fullDateString = `${this.getTickets()[0].getDate()}T${startTimeString}:00`;
+        const startTime = new Date(fullDateString);
+
+        return this.tickets.filter(viaggio => {
+            return viaggio.getDepartureTimestamp() >= startTime;
+        });
+    }
+
+}
 
 module.exports = { Stazione, Viaggio }

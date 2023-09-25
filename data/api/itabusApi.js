@@ -34,7 +34,7 @@ async function search_ticket(departure, destination, date)
         return { success: false, error: 'Invalid date format' }
     }
 
-    const code_departure = find_station(departure)
+    const code_departure = await find_station(departure)
     const code_destination = await find_station(destination)
 
     if(code_departure === undefined || code_destination === undefined)
@@ -46,7 +46,7 @@ async function search_ticket(departure, destination, date)
     //console.log(code_destination.getCity())
 
     //Endpoint --> https://www.itabus.it/on/demandware.store/Sites-ITABUS-Site/it/Api-Travels?
-    const params = `origin=${code_departure.getCode()}&destination=${code_destination.getCode()}&datestart=${date}&adults=1&children=0&membership=false&code=`;
+    const params = `origin=${code_departure.data.getCode()}&destination=${code_destination.data.getCode()}&datestart=${date}&adults=1&children=0&membership=false&code=`;
     const endpoint = "https://www.itabus.it/on/demandware.store/Sites-ITABUS-Site/it/Api-Travels?" + params;
 
 

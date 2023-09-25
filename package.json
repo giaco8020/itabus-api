@@ -15,5 +15,13 @@
   "devDependencies": {
     "chai": "^4.3.8",
     "mocha": "^10.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giaco8020/itabus-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/giaco8020/itabus-api/issues"
+  },
+  "homepage": "https://github.com/giaco8020/itabus-api#readme"
 }

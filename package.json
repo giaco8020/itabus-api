@@ -4,7 +4,7 @@
   "description": "access to ItabusAPI's unofficial API",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --exit data/test/test.js"
+    "test": "mocha --exit data/test/test.js "
   },
   "keywords": [],
   "author": "giaco8020",

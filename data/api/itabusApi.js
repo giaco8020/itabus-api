@@ -37,13 +37,13 @@ async function search_ticket(departure, destination, date)
     const code_departure = await find_station(departure)
     const code_destination = await find_station(destination)
 
-    if(code_departure === undefined || code_destination === undefined)
+    if(code_departure.success === false || code_destination.success === false)
     {
         return { success: false, error: 'Invalid departure e/o destination' };
     }
 
-    //console.log(code_departure.getCity())
-    //console.log(code_destination.getCity())
+    //console.log(code_departure)
+    //console.log(code_destination)
 
     //Endpoint --> https://www.itabus.it/on/demandware.store/Sites-ITABUS-Site/it/Api-Travels?
     const params = `origin=${code_departure.data.getCode()}&destination=${code_destination.data.getCode()}&datestart=${date}&adults=1&children=0&membership=false&code=`;

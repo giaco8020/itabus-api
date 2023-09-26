@@ -5,8 +5,9 @@
 
 Access to Itabus's unofficial API with object-oriented promises.
 
-The project is developed for information purposes. 
+Itabus is an Italian road transport company operating exclusively within Italy.
 
+The project is developed for information purposes. 
 **Do not use this code for evil purposes and respect the service offered. **
 
 ## Installation 
@@ -16,6 +17,11 @@ npm install itabus-api
 
 # Features
 * Search tickets
-* Journey searching
 * Station retrieval
 
+
+# How to use
+```js
+
+
+```

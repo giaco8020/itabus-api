@@ -60,3 +60,29 @@ Itabus.search_tickets("Milan", "Bologna", "2023-10-10")
     .catch(err => console.log(`Error searching: ${err.message}`));
 
 ```
+
+# How To Use - Station retrieval
+```js
+const ItabusAPI = require("itabus-api")
+const Itabus = new ItabusAPI()
+
+const result = Itabus.get_station("Milano")
+
+if(result.success === false){
+    console.log(result.error)
+} else {
+    console.log(result.data)
+
+    //Id of Station
+    console.log(result.data.getCode())
+
+    //City of Station
+    console.log(result.data.getCity())
+
+    //Address of Station
+    console.log(result.data.getAddress())
+
+    //List of available destinations from this station
+    console.log(result.data.getDestinations())
+}
+```

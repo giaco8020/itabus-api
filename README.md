@@ -20,8 +20,43 @@ npm install itabus-api
 * Station retrieval
 
 
-# How to use
+# How To Use - Search tickets
 ```js
+const ItabusAPI = require("itabus-api")
+const Itabus = new ItabusAPI()
 
+// DATE FORMAT --> "YYYY-MM-DD"
+Itabus.search_tickets("Milan", "Bologna", "2023-10-10")
+    .then(request => {
+
+        if(request.success === false){
+            console.log(request.error)
+        }
+        else{
+            const Results = request.data
+
+            // Get all travel ticket solutions
+            console.log(Results.getTickets())
+
+            // Get the ticket with the shortest trip
+            console.log(Results.getShortestTrip())
+
+            // Get the ticket with the cheapest trip
+            console.log(Results.getCheapestTrip())
+
+            // For each ticket, you can extract individual information
+            const exampleTicket = Results.getTickets()[0]
+
+            console.log(exampleTicket.getTravelDuration())
+            console.log(exampleTicket.getId())
+            console.log(exampleTicket.getOrigin())
+            console.log(exampleTicket.getDestination())
+            console.log(exampleTicket.getDepartureTimestamp())
+            console.log(exampleTicket.getArrivalTimestamp())
+            console.log(exampleTicket.getRates())
+            console.log(exampleTicket.getBasicPrice())
+        }
+    })
+    .catch(err => console.log(`Error searching: ${err.message}`));
 
 ```

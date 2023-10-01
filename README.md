@@ -7,6 +7,10 @@ Access to Itabus's unofficial API with object-oriented promises.
 
 Itabus is an Italian road transport company operating exclusively within Italy.
 
+The name of the stations is accepted only in Italian! 
+Example: 
+        * 'MILANO' is valid station
+        * 'MILAN' is not valid station
 The project is developed for information purposes. 
 **Do not use this code for evil purposes and respect the service offered. **
 
@@ -26,7 +30,7 @@ const ItabusAPI = require("itabus-api")
 const Itabus = new ItabusAPI()
 
 // DATE FORMAT --> "YYYY-MM-DD"
-Itabus.search_tickets("Milan", "Bologna", "2023-10-10")
+Itabus.search_tickets("Milano", "Bologna", "2023-10-10")
     .then(request => {
 
         if(request.success === false){
